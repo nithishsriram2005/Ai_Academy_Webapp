@@ -1,0 +1,3 @@
+AI ACADEMY - Flutter Web Application
+
+AI Academy is a learning platform built with Flutter offering AI/ML courses. Users sign in as students or recruiters via email or Google authentication. Features include course browsing, newsletters, career resources, and community engagement with responsive design and Firebase integration for authentication and data management.
