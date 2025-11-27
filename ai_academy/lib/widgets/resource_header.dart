@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ResourceHeader extends StatelessWidget {
+  const ResourceHeader({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(

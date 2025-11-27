@@ -365,7 +365,8 @@ class _SignInPageState extends State<SignInPage> {
                 SizedBox(
                   width: double.infinity,
                   child: OutlinedButton.icon(
-                    onPressed: () async {
+                    onPressed: isLoading ? null : () async {
+                      setState(() => isLoading = true);
                       try {
                         final userCredential = await FirebaseAuthService.signInWithGoogle();
                         if (userCredential?.user != null) {
@@ -378,11 +379,13 @@ class _SignInPageState extends State<SignInPage> {
                             backgroundColor: Colors.red,
                           ),
                         );
+                      } finally {
+                        setState(() => isLoading = false);
                       }
                     },
                     icon: Image.network(
                       "https://img.icons8.com/color/48/google-logo.png",
-                      height: 20,
+                      height: 24,
                     ),
                     label: const Text("Continue with Google"),
                     style: OutlinedButton.styleFrom(

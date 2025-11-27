@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ResourceDescription extends StatelessWidget {
   final Function(String) onCategorySelected;
   
-  const ResourceDescription({Key? key, required this.onCategorySelected}) : super(key: key);
+  const ResourceDescription({super.key, required this.onCategorySelected});
   
   @override
   Widget build(BuildContext context) {

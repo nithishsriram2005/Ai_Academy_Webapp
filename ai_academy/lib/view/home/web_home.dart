@@ -971,7 +971,7 @@ class _WebHomeState extends State<WebHome> {
           "https://www.deeplearning.ai/wp-content/uploads/2023/06/NLP-Guide.pdf",
     };
 
-    Future<void> _sendDownloadEmail(
+    Future<void> sendDownloadEmail(
       String email,
       String ResourcesPageTitle,
     ) async {
@@ -979,13 +979,13 @@ class _WebHomeState extends State<WebHome> {
       print('Email sent to $email for downloading $ResourcesPageTitle');
     }
 
-    bool _isValidEmail(String email) {
+    bool isValidEmail(String email) {
       return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
     }
 
-    Future<void> _handleDownload() async {
+    Future<void> handleDownload() async {
       if (emailController.text.isEmpty ||
-          !_isValidEmail(emailController.text)) {
+          !isValidEmail(emailController.text)) {
         return;
       }
 
@@ -993,7 +993,7 @@ class _WebHomeState extends State<WebHome> {
         final url = downloadUrls[title];
         if (url != null) {
           await _launchURL(url);
-          await _sendDownloadEmail(emailController.text, title);
+          await sendDownloadEmail(emailController.text, title);
           emailController.clear();
         }
       } catch (e) {
@@ -1101,10 +1101,12 @@ class _WebHomeState extends State<WebHome> {
                               ),
                               style: GoogleFonts.poppins(),
                               validator: (value) {
-                                if (value == null || value.isEmpty)
+                                if (value == null || value.isEmpty) {
                                   return 'Email required';
-                                if (!_isValidEmail(value))
+                                }
+                                if (!isValidEmail(value)) {
                                   return 'Invalid email';
+                                }
                                 return null;
                               },
                             ),
@@ -1114,7 +1116,7 @@ class _WebHomeState extends State<WebHome> {
                               child: ElevatedButton(
                                 onPressed:
                                     buttonText == "Download"
-                                        ? _handleDownload
+                                        ? handleDownload
                                         : () {},
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: const Color(0xff1A497F),
@@ -1180,10 +1182,12 @@ class _WebHomeState extends State<WebHome> {
                                   ),
                                   style: GoogleFonts.poppins(),
                                   validator: (value) {
-                                    if (value == null || value.isEmpty)
+                                    if (value == null || value.isEmpty) {
                                       return 'Email required';
-                                    if (!_isValidEmail(value))
+                                    }
+                                    if (!isValidEmail(value)) {
                                       return 'Invalid email';
+                                    }
                                     return null;
                                   },
                                 ),
@@ -1192,7 +1196,7 @@ class _WebHomeState extends State<WebHome> {
                               ElevatedButton(
                                 onPressed:
                                     buttonText == "Download"
-                                        ? _handleDownload
+                                        ? handleDownload
                                         : () {},
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: const Color(0xff1A497F),

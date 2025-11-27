@@ -20,7 +20,7 @@ class _CoursesPageState extends State<CoursesPage> {
   String _searchQuery = '';
   String _selectedTab = 'Most Rated';
   String _selectedSort = 'Newest';
-  List<String> _selectedFilters = [];
+  final List<String> _selectedFilters = [];
   
   final List<Map<String, String>> _allCourses = [
     {

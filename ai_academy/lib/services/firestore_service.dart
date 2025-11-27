@@ -12,7 +12,7 @@ class FirestoreService {
     } catch (e) {
       print('Firestore save error: $e');
       print('Error type: ${e.runtimeType}');
-      throw e;
+      rethrow;
     }
   }
 

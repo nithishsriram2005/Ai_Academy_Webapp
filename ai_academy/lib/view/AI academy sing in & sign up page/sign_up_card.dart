@@ -34,15 +34,15 @@ class _SignUpCardState extends State<SignUpCard> {
       _passwordCtrl.text,
     );
     
+    setState(() => _loading = false);
+    
     if (error == null) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => _isStudent ? const JoinForm1() : const JoinForm2()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => _isStudent ? const JoinForm1() : const JoinForm2()));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(error), backgroundColor: Colors.red),
       );
     }
-    
-    setState(() => _loading = false);
   }
 
   Widget _socialButton({required String label, required Widget icon, required VoidCallback onTap}) {
@@ -206,15 +206,20 @@ class _SignUpCardState extends State<SignUpCard> {
                 },
               ),
               onTap: () async {
+                setState(() => _loading = true);
                 try {
                   final userCredential = await FirebaseAuthService.signInWithGoogle();
-                  if (userCredential?.user != null) {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => _isStudent ? const JoinForm1() : const JoinForm2()));
+                  if (userCredential?.user != null && mounted) {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => _isStudent ? const JoinForm1() : const JoinForm2()));
                   }
                 } catch (e) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Google Sign-In failed: $e'), backgroundColor: Colors.red),
-                  );
+                  if (mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Google Sign-In failed: $e'), backgroundColor: Colors.red),
+                    );
+                  }
+                } finally {
+                  if (mounted) setState(() => _loading = false);
                 }
               },
             ),

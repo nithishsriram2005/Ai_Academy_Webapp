@@ -10,6 +10,8 @@ import 'package:ai_academy/widgets/ai_notes_section.dart';
 import 'package:ai_academy/widgets/other_resources_section.dart';
 
 class Resources extends StatefulWidget {
+  const Resources({super.key});
+
   @override
   State<Resources> createState() => _ResourcesState();
 }

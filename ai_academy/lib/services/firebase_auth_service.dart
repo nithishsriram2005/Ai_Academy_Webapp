@@ -45,7 +45,17 @@ class FirebaseAuthService {
 
   static Future<UserCredential?> signInWithGoogle() async {
     try {
+      await _auth.signOut();
+      
       GoogleAuthProvider googleProvider = GoogleAuthProvider();
+      googleProvider.setCustomParameters({
+        'prompt': 'select_account',
+        'login_hint': '',
+      });
+      
+      googleProvider.addScope('email');
+      googleProvider.addScope('profile');
+      
       UserCredential userCredential = await _auth.signInWithPopup(googleProvider);
       
       if (userCredential.user != null) {

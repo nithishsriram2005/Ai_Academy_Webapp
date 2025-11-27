@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ResourceFooter extends StatelessWidget {
+  const ResourceFooter({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(

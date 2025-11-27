@@ -5,6 +5,8 @@ void main() {
 }
 
 class AICoursesApp extends StatelessWidget {
+  const AICoursesApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,6 +22,8 @@ class AICoursesApp extends StatelessWidget {
 }
 
 class AllCoursesPage extends StatefulWidget {
+  const AllCoursesPage({super.key});
+
   @override
   _AllCoursesPageState createState() => _AllCoursesPageState();
 }
@@ -61,7 +65,7 @@ class _AllCoursesPageState extends State<AllCoursesPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Sidebar
-                Container(
+                SizedBox(
                   width: 600,
                   child: _buildSidebar(),
                 ),
@@ -219,7 +223,7 @@ class _AllCoursesPageState extends State<AllCoursesPage> {
           SizedBox(height: 30),
           
           // Search Bar
-          Container(
+          SizedBox(
             height: 40,
             child: TextField(
               onChanged: (value) {
@@ -358,7 +362,7 @@ class _AllCoursesPageState extends State<AllCoursesPage> {
               ),
             ),
           ),
-        )).toList(),
+        )),
       ],
     );
   }
@@ -551,7 +555,7 @@ class _AllCoursesPageState extends State<AllCoursesPage> {
                 topLeft: Radius.circular(12),
                 topRight: Radius.circular(12),
               ),
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
                 child: Stack(
                   children: [
